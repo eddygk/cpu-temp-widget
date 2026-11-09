@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    # WPF is Windows-only. The unit tests cover the logic (history, band splitting, view model, SDK-thread
+    # guard) with fakes, so they need neither an AMD CPU nor the AMD SDK.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Test
+        run: dotnet test tests/CpuTempWidget.Tests/CpuTempWidget.Tests.csproj -p:Platform=x64 --nologo

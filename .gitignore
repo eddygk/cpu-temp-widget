@@ -1,0 +1,16 @@
+# Build output
+**/bin/
+**/obj/
+publish/
+dist/
+
+# IDE / OS
+.vs/
+*.user
+*.suo
+Thumbs.db
+
+# Never commit AMD's SDK files (licensed separately by AMD; users install the SDK themselves)
+AMDRyzenMaster*
+Platform.dll
+Device.dll

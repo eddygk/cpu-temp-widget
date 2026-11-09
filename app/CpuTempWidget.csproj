@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <AssemblyName>CpuTempWidget</AssemblyName>
+    <RootNamespace>CpuTempWidget</RootNamespace>
+
+    <!-- Shown in the exe's Properties > Details tab. The installer build overrides Version (scripts\Build-Installer.ps1). -->
+    <Version>1.0.0</Version>
+    <Product>CPU Temperature Widget</Product>
+    <Authors>eddygk</Authors>
+    <Company>eddygk</Company>
+    <Description>Desktop overlay showing the AMD Ryzen CPU temperature with a 5-minute graph</Description>
+    <Copyright>Copyright (c) 2026 eddygk (MIT License)</Copyright>
+    <RepositoryUrl>https://github.com/eddygk/cpu-temp-widget</RepositoryUrl>
+    <!-- Keep the git commit hash out of the product version string. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <!-- The UI is English only: skip the 13 languages of WPF resource files in the (self-contained) publish. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- Native wrapper built by ..\native\RmTemp.vcxproj (scripts\Build-Installer.ps1 / Install-CpuTempWidget.ps1 build it first).
+       It is copied next to the exe for both build and publish; the DllImport finds it in the app folder. -->
+  <ItemGroup>
+    <None Include="..\native\bin\x64\Release\RmTemp.dll" Link="RmTemp.dll"
+          CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+          Condition="Exists('..\native\bin\x64\Release\RmTemp.dll')" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+  </ItemGroup>
+
+</Project>
