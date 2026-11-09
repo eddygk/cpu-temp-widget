@@ -98,6 +98,10 @@ Any AMD Ryzen or Ryzen Threadripper processor that AMD's SDK supports. I develop
 system running Windows 11; other models should work but are untested. If it works (or doesn't) for you, an issue
 with your CPU model is very welcome.
 
+## Background
+
+I built this after my PC kept crashing and I wanted to see the CPU temperature at a glance. It turned out not to be the heat. The story is on my blog: [It Wasn't the Heat. It Was (Probably) the RAM.](https://eddykawira.com/2026/11/09/ryzen-whea-event-id-18-ram-not-heat/)
+
 ---
 
 ## For developers
